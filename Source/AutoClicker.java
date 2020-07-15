@@ -1,4 +1,5 @@
 import java.awt.Robot;
+import java.awt.event.KeyEvent;
 
 import javax.swing.JLabel;
 
@@ -31,10 +32,14 @@ public class AutoClicker {
             for (int i = 0; i < minutes*60; i++) {
                 timePass.setText(timePassed + "");
                 robot.mousePress(16);
+                if (settings.AUTO_WALK) {
+                    robot.keyPress(KeyEvent.VK_W);
+                }
                 robot.delay(minutesInMS);
                 timePassed++;
             }
             robot.mouseRelease(16);
+            robot.keyRelease(KeyEvent.VK_W);
             robot.delay(1);
             timePass.setText("0:00");
             settings.PRESSED = false;

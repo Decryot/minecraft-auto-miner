@@ -41,6 +41,43 @@ public class Window extends JFrame implements ActionListener {
 
         JTextField minutesInput = new JTextField();
 
+        JPanel autoWalkerBool = new JPanel();
+        JPanel enabledWalking = new JPanel();
+
+        autoWalkerBool.setBounds(135,115,20,20);
+        autoWalkerBool.setBackground(new Color(20,20,20));
+
+        enabledWalking.setBounds(20/2-10/2,20/2-10/2,10,10);
+        enabledWalking.setBackground(Color.WHITE);
+
+        autoWalkerBool.addMouseListener(new MouseListener() {
+            @Override
+            public void mouseClicked(MouseEvent e) {}
+
+            @Override
+            public void mousePressed(MouseEvent e) {
+                settings.AUTO_WALK = !settings.AUTO_WALK;
+                if (settings.AUTO_WALK) {
+                    autoWalkerBool.add(enabledWalking);
+                }else {
+                    autoWalkerBool.remove(enabledWalking);
+                }
+            }
+
+            @Override
+            public void mouseReleased(MouseEvent e) {}
+
+            @Override
+            public void mouseEntered(MouseEvent e) {
+                autoWalkerBool.setBackground(new Color(15,15,15));
+            }
+
+            @Override
+            public void mouseExited(MouseEvent e) {
+                autoWalkerBool.setBackground(new Color(20,20,20));
+            }
+        });
+
         minutesInput.setBounds(135,65,70,20);
         minutesInput.setBackground(Color.BLACK);
         minutesInput.setForeground(Color.WHITE);
@@ -118,6 +155,7 @@ public class Window extends JFrame implements ActionListener {
 
         background.add(minutesInput);
         background.add(timePassed);
+        background.add(autoWalkerBool);
 
         background.add(autoWalker);
         background.add(timeDisplay);
